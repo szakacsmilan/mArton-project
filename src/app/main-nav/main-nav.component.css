@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 130px;
+  width: 155px;
 }
 
 .sidenav .mat-toolbar {
@@ -31,7 +31,7 @@ mat-sidenav a {
   margin: 5px 0;
   text-decoration: none;
   color: antiquewhite;
-  font-family: 'Open Sans', helvetica;
+  font-family: sans-serif;
 }
 
 mat-sidenav a:hover{
@@ -50,7 +50,7 @@ mat-toolbar a {
   margin: 0 10px;
   text-decoration: none;
   color: antiquewhite;
-  font-family: 'Open Sans', helvetica;
+  font-family: sans-serif;
   font-weight: 500;
   
 }

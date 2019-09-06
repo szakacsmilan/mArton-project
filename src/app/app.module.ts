@@ -12,11 +12,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
+    LogoButtonComponent,
   ],
   imports: [
     BrowserModule,
