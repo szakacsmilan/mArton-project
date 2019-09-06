@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === true">
+    <mat-nav-list> 
+      <a mat-list-item href="#">FŐOLDAL</a>
+      <a mat-list-item href="#">SZOLGÁLTATÁSOK</a>
+      <a mat-list-item href="#">GALÉRIA</a>
+      <a mat-list-item href="#">ELÉRHETŐSÉG</a>
+      <a mat-list-item href="#">IDŐPONTFOGLALÁS</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <button mat-icon-button
+      class="nav-icon-button"
+      *ngIf="(isHandset$ | async)"
+      type="button"
+      aria-label="Toggle sidenav"
+      (click)="drawer.toggle()">
+      <mat-icon><i class="material-icons">list</i></mat-icon>
+    </button>
+    <mat-toolbar
+     color="primary"
+     *ngIf="!(isHandset$ | async)"
+     >
+      <span class="spacer"></span>
+      <a href="#">FŐOLDAL</a>
+      <a href="#">SZOLGÁLTATÁSOK</a>
+      <a href="#">GALÉRIA</a>
+      <a href="#">ELÉRHETŐSÉG</a>
+      <a href="#">IDŐPONTFOGLALÁS</a>
+      <span class="spacer"></span>
+      </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
