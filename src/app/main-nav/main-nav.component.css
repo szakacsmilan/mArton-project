@@ -69,3 +69,11 @@ mat-toolbar a:hover{
   font-size: 25px;
   color: antiquewhite;
 }
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.mat-toolbar {
+  font-size: 16px;
+}

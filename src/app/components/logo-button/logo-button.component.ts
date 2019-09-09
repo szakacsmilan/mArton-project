@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { AppointmentComponent } from '../appointment/appointment.component';
+
 
 @Component({
   selector: 'app-logo-button',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoButtonComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-}
+  onCreateAppointment() {
+    this.dialog.open(AppointmentComponent, {
+      width: '250px'});
+    }
+  }

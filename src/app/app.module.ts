@@ -9,16 +9,19 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     LogoButtonComponent,
+    AppointmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +32,11 @@ import { LogoButtonComponent } from './components/logo-button/logo-button.compon
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
+  entryComponents: [AppointmentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
