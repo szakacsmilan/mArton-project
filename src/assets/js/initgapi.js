@@ -1,5 +1,7 @@
+var eventStarts = [];
+var eventEnds = [];
+
 function start() {
-   let events = [];
     // 2. Initialize the JavaScript client library.
     gapi.client.init({
     'apiKey': 'AIzaSyArah0cQbp5xBAWS2zW0qX8UbI3wT6zHIE',
@@ -13,8 +15,10 @@ function start() {
       })
     }).then(function(response) {
       for (let i = 0; i < response.result.items.length; i++){
-    events.push(response.result.items[i].start)};
-    console.log(events);
+    eventStarts.push(response.result.items[i].start)
+    eventEnds.push(response.result.items[i].end)}
+    console.log(eventStarts);
+    console.log(eventEnds);
     }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
     });
