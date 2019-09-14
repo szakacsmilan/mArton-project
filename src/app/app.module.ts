@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,10 +34,14 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   entryComponents: [AppointmentComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
+
+
 export class AppModule { }
