@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var events: any;
+declare var eventStarts: any;
+declare var eventEnds: any;
 
 @Component({
   selector: 'app-appointment',
@@ -10,10 +11,12 @@ declare var events: any;
 export class AppointmentComponent implements OnInit {
 
   constructor() {
-    console.log(events);
    }
 
   ngOnInit() {
+    console.log(eventStarts);
+    console.log(eventEnds);
   }
+
 
 }

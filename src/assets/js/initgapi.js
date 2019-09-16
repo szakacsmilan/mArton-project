@@ -1,7 +1,12 @@
 var eventStarts = [];
 var eventEnds = [];
 
+
+
+
+
 function start() {
+  
     // 2. Initialize the JavaScript client library.
     gapi.client.init({
     'apiKey': 'AIzaSyArah0cQbp5xBAWS2zW0qX8UbI3wT6zHIE',
@@ -11,14 +16,14 @@ function start() {
     }).then(function() {
     // 3. Initialize and make the API request.
     return gapi.client.request({
-      "path": "https://www.googleapis.com/calendar/v3/calendars/primary/events"
+      "path": "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      // Get's only upcoming events
+      'params':{'timeMin': (new Date()).toISOString().split('.')[0] + 'Z'}
       })
     }).then(function(response) {
       for (let i = 0; i < response.result.items.length; i++){
     eventStarts.push(response.result.items[i].start)
     eventEnds.push(response.result.items[i].end)}
-    console.log(eventStarts);
-    console.log(eventEnds);
     }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
     });

@@ -24,11 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/js/initgapi.js"
+              "src/styles.css"
             ],
             "scripts": [
-
+              "src/assets/js/initgapi.js"
             ]
           },
           "configurations": {
