@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var eventStarts: any;
-declare var eventEnds: any;
+declare var eventStarts: string[];
+declare var eventEnds: string[];
 
 @Component({
   selector: 'app-appointment',
@@ -14,9 +14,19 @@ export class AppointmentComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(eventStarts);
-    console.log(eventEnds);
+    this.sliceDates(eventStarts);
+    this.sliceDates(eventEnds);
+
   }
+
+  //Slicing dateformat
+  sliceDates(array: string[]){
+    for (let i = 0; i<array.length; i++){
+      array[i] = array[i]["dateTime"].slice(0, -6);
+    }
+  }
+
+  
 
 
 }
