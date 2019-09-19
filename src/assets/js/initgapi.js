@@ -1,9 +1,6 @@
+
 var eventStarts = [];
 var eventEnds = [];
-
-
-
-
 
 function start() {
   
@@ -18,12 +15,13 @@ function start() {
     return gapi.client.request({
       "path": "https://www.googleapis.com/calendar/v3/calendars/primary/events",
       // Get's only upcoming events
-      'params':{'timeMin': (new Date()).toISOString().split('.')[0] + 'Z'}
+      'params':{'timeMin': (new Date().toISOString().split('.')[0] + 'Z')}
       })
     }).then(function(response) {
       for (let i = 0; i < response.result.items.length; i++){
     eventStarts.push(response.result.items[i].start)
     eventEnds.push(response.result.items[i].end)}
+  
     }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
     });
