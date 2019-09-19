@@ -21,7 +21,7 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.initEventsList();
-    this.initFreeEventsList('2019-09-28', 1, 30);
+    this.initFreeEventsList('2019-09-28', 0, 30);
     console.log(this.freeEvents);
   }
 
@@ -41,38 +41,37 @@ export class AppointmentComponent implements OnInit {
     let startMinute = 0;
     let endMinute = slotLengthMinute;
     let tempHour = 0;
+
     for (let i = openingTime; i < closingTime;) {
       let isBefore = true;
       let tempEvent = new Event(
         moment(expectedDate).hour(i).minute(startMinute),
         moment(expectedDate).hour(i + slotLengthHour + tempHour).minute(endMinute));
+
+      this.events.forEach(element => {
+        if (moment(element.startTime).date() === moment(tempEvent.startTime).date()) {
+          if (moment(element.startTime).isSame(moment(tempEvent.startTime)) || (moment(tempEvent.endTime).isBefore(moment(element.endTime))) && moment(tempEvent.endTime).isAfter(moment(element.startTime))){
+            isBefore = false;
+            i = moment(element.endTime).hour();
+            startMinute = moment(element.endTime).minute();
+          }
+        }
+      });
+      if (isBefore) {
         startMinute = endMinute;
         endMinute += slotLengthMinute;
-        console.log('Endminute: ' + endMinute);
-      if (endMinute == 60) {
-        endMinute = 0;
-        tempHour = 1;
-      } else {
-        if (slotLengthMinute !== 0){
-          tempHour = 0;
-          i += 1;
+        if (endMinute == 60) {
+          endMinute = 0;
+          tempHour = 1;
+        } else {
+          if (slotLengthMinute !== 0){
+            tempHour = 0;
+            i += 1;
+          }
         }
+        this.freeEvents.push(tempEvent);
+        i += slotLengthHour;
       }
-      i += slotLengthHour;
-      this.freeEvents.push(tempEvent);
-
-      // this.events.forEach(element => {
-      //   if (moment(element.startTime).date() === 28) {
-      //     if (moment(element.startTime).isSame(moment(tempEvent.startTime))) {
-      //       isBefore = false;
-      //       i++;
-      //     }
-      //   }
-      // });
-      // if (isBefore) {
-      //   this.freeEvents.push(tempEvent);
-      //   i += slotLengthHour;
-      // }
     }
   }
 }
