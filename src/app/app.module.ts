@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatListModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: [AppointmentComponent],
