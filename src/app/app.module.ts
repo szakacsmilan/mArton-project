@@ -13,12 +13,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MainNavComponent } from './main-nav/main-nav.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
-import { AboutMeComponent } from './components/about-me/about-me.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
     MainNavComponent,
     LogoButtonComponent,
     AppointmentComponent,
-    AboutMeComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
