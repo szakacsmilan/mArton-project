@@ -18,6 +18,7 @@ import { LogoButtonComponent } from './components/logo-button/logo-button.compon
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
+import { AboutMeComponent } from './components/about-me/about-me.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
     MainNavComponent,
     LogoButtonComponent,
     AppointmentComponent,
+    AboutMeComponent,
   ],
   imports: [
     BrowserModule,
