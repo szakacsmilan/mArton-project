@@ -41,7 +41,7 @@ export class AppointmentComponent implements OnInit {
     this.initEventsList();
     this.initNextWeekDays();
     this.initHairTypes();
-    }
+  }
 
   // Filling events list with the events already exists in the calendar
   initEventsList() {
