@@ -3,7 +3,6 @@ var eventStarts = [];
 var eventEnds = [];
 
 function start() {
-  
     // 2. Initialize the JavaScript client library.
     gapi.client.init({
     'apiKey': 'AIzaSyArah0cQbp5xBAWS2zW0qX8UbI3wT6zHIE',
@@ -28,4 +27,8 @@ function start() {
 };
 // 1. Load the JavaScript client library.
 gapi.load('client', start);
+
+function asd(){
+  alert("malac");
+}
 

@@ -7,6 +7,7 @@ import { HairType } from 'src/app/models/HairTypes';
 declare var eventStarts: string[];
 declare var eventEnds: string[];
 
+
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -41,6 +42,7 @@ export class AppointmentComponent implements OnInit {
     this.initEventsList();
     this.initNextWeekDays();
     this.initHairTypes();
+
   }
 
   // Filling events list with the events already exists in the calendar

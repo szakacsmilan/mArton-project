@@ -19,6 +19,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     LogoButtonComponent,
     AppointmentComponent,
     GalleryComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
