@@ -33,11 +33,12 @@
   </mat-form-field>
 <mat-form-field>
   <mat-label>Válassz időpontot</mat-label>
-  <mat-select #event [disabled]="!isHairTypeSelected" >
+  <mat-select #event [disabled]="!isHairTypeSelected" [(ngModel)]="theSelectedTimeslot" (click)="log()">
     <mat-option *ngFor="let element of freeEvents" [value]="element">
         {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
     </mat-option>
   </mat-select>
+  <button (click)="asdinitCreateEvent()">Create event</button>
 </mat-form-field>
 </div>
 

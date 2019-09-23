@@ -7,6 +7,7 @@ import { HairType } from 'src/app/models/HairTypes';
 declare var eventStarts: string[];
 declare var eventEnds: string[];
 
+declare function initCreateEvent(startTime, endTime): any;
 
 @Component({
   selector: 'app-appointment',
@@ -26,6 +27,9 @@ export class AppointmentComponent implements OnInit {
   theSelectedGender: string = '';
   theSelectedHairType: HairType;
 
+  theSelectedTimeslot: Event;
+  
+
   isGenderSelected: boolean = false;
   isHairTypeSelected: boolean = false;
 
@@ -33,6 +37,8 @@ export class AppointmentComponent implements OnInit {
   hairTypesWoman: HairType[] = [];
 
   selectedDay: string;
+
+
 
 
   constructor() {
@@ -59,6 +65,13 @@ export class AppointmentComponent implements OnInit {
     }
   }
 
+  log(){
+    console.log(this.theSelectedTimeslot);
+  }
+
+  asdinitCreateEvent(){
+    initCreateEvent(this.theSelectedTimeslot.startTime, this.theSelectedTimeslot.endTime);
+  }
 
   initHairTypes() {
     this.hairTypesMan.push(
