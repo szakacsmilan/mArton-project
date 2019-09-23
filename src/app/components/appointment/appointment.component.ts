@@ -1,28 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Event } from 'src/app/models/Event';
+import { HairType } from 'src/app/models/HairTypes';
+
 
 declare var eventStarts: string[];
 declare var eventEnds: string[];
+
 
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
+
 export class AppointmentComponent implements OnInit {
 
   events: Event[] = [];
   freeEvents: Event[] = [];
-  freeEventsToShow: Event[] = [];
+
+  nextWeekDays: string[] = [];
+
+  genders: string[] = ['Nő', 'Férfi'];
+
+  theSelectedGender: string = '';
+  theSelectedHairType: HairType;
+
+  isGenderSelected: boolean = false;
+  isHairTypeSelected: boolean = false;
+
+  hairTypesMan: HairType[] = [];
+  hairTypesWoman: HairType[] = [];
+
+  selectedDay: string;
+
 
   constructor() {
    }
 
   ngOnInit() {
     this.initEventsList();
-    this.initFreeEventsList('2019-09-28', 0, 30);
-    console.log(this.freeEvents);
+    this.initNextWeekDays();
+    this.initHairTypes();
+
   }
 
   // Filling events list with the events already exists in the calendar
@@ -30,6 +50,33 @@ export class AppointmentComponent implements OnInit {
     for (let i = 0; i < eventStarts.length; i++) {
       this.events.push(new Event(moment(eventStarts[i]['dateTime']), moment(eventEnds[i]['dateTime'])));
     }
+  }
+
+  initNextWeekDays(){
+    const today = moment()
+    for (let i = 1; i < 8; i++){
+      this.nextWeekDays.push(moment().add(i, 'days').format('YYYY-MM-DD').toString());
+    }
+  }
+
+
+  initHairTypes() {
+    this.hairTypesMan.push(
+      new HairType('Férfi vágás', 0, 30), new HairType('Férfi vágás + szakáll', 0, 30), new HairType('Férfi vágás + festés', 1, 0));
+    this.hairTypesWoman.push(
+      new HairType('Női frizuraszárítás', 0, 30), new HairType('Női hajvágás + szárítás', 1, 0), new HairType('Női hajtőfestés', 1, 0),
+      new HairType('Női hajtőfestés + hajvágás', 1, 30), new HairType('Női teljes hajfestés', 1, 30),
+      new HairType('Női teljes hajfestés + hajvágás', 2, 0),
+      new HairType('Női balayage', 2, 0), new HairType('Női melír teljes hajon', 1, 30),
+      new HairType('Női melír teljes hajon + hajvágás', 2, 0)
+    );
+
+  }
+
+  onInitFreeEventsList() {
+    this.freeEvents.length = 0;
+    this.initFreeEventsList(this.selectedDay, this.theSelectedHairType.cuttingTimeHour, this.theSelectedHairType.cuttingTimeMinute);
+    console.log(this.freeEvents);
   }
 
   // Find the free slots and fill the eventList with it
@@ -42,15 +89,17 @@ export class AppointmentComponent implements OnInit {
     let endMinute = slotLengthMinute;
     let tempHour = 0;
 
+
     for (let i = openingTime; i < closingTime;) {
       let isBefore = true;
       let tempEvent = new Event(
-        moment(expectedDate).hour(i).minute(startMinute),
-        moment(expectedDate).hour(i + slotLengthHour + tempHour).minute(endMinute));
+        moment(expectedDate).hour(i).minute(startMinute).format(),
+        moment(expectedDate).hour(i + slotLengthHour + tempHour).minute(endMinute).format());
 
       this.events.forEach(element => {
         if (moment(element.startTime).date() === moment(tempEvent.startTime).date()) {
-          if (moment(element.startTime).isSame(moment(tempEvent.startTime)) || (moment(tempEvent.endTime).isBefore(moment(element.endTime))) && moment(tempEvent.endTime).isAfter(moment(element.startTime))){
+          if (moment(element.startTime).isSame(moment(tempEvent.startTime)) 
+          || (moment(tempEvent.endTime).isBefore(moment(element.endTime))) && moment(tempEvent.endTime).isAfter(moment(element.startTime))){
             isBefore = false;
             i = moment(element.endTime).hour();
             startMinute = moment(element.endTime).minute();
@@ -69,6 +118,8 @@ export class AppointmentComponent implements OnInit {
             i += 1;
           }
         }
+        tempEvent.startTimeToShow = moment(tempEvent.startTime).format('LT');
+        tempEvent.endTimeToShow = moment(tempEvent.endTime).format('LT');
         this.freeEvents.push(tempEvent);
         i += slotLengthHour;
       }
