@@ -1,7 +1,7 @@
-function initCreateEvent(startTime,endTime){
+function initCreateEvent(startTime,endTime, title, email, description, phoneNum){
     loadClient().then(function(){
-        execute(startTime,endTime);
-        console.log(startTime,endTime)
+        execute(startTime,endTime, title, email, description, phoneNum);
+        console.log(startTime,endTime, title, email, description, phoneNum)
     })
 }
 
@@ -11,7 +11,7 @@ function initCreateEvent(startTime,endTime){
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
-  function execute(startTime,endTime) {
+  function execute(startTime,endTime, title, email, description, phoneNum) {
     return gapi.client.calendar.events.insert({
       "calendarId": "primary",
       "resource": {
@@ -20,7 +20,9 @@ function initCreateEvent(startTime,endTime){
         },
         "start": {
           "dateTime": startTime
-        }
+        },
+        "summary": title,
+        "description": description+" "+phoneNum+" "+email
       }
     })
         .then(function(response) {
