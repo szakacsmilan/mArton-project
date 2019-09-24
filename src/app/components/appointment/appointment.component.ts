@@ -27,7 +27,7 @@ export class AppointmentComponent implements OnInit {
   theSelectedHairType: HairType;
 
   theSelectedTimeslot: Event;
-  
+
 
   isGenderSelected: boolean = false;
   isHairTypeSelected: boolean = false;

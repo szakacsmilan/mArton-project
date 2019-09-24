@@ -21,7 +21,7 @@ function initCreateEvent(startTime,endTime, title, email, description, phoneNum)
         "start": {
           "dateTime": startTime
         },
-        "summary": title,
+        "summary": title+" - "+description,
         "description": description+" "+phoneNum+" "+email
       }
     })
