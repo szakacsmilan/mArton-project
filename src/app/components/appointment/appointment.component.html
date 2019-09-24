@@ -1,5 +1,5 @@
 <div class="appointment-modal">
-<h4>Időpont</h4>
+<h4>Időpont kiválasztása</h4>
 <mat-form-field>
     <mat-label>Női vagy Férfi?</mat-label>
     <mat-select #genderSelect [(ngModel)]="theSelectedGender" (selectionChange)="isGenderSelected=true">
@@ -33,12 +33,24 @@
   </mat-form-field>
 <mat-form-field>
   <mat-label>Válassz időpontot</mat-label>
-  <mat-select #event [disabled]="!isHairTypeSelected" [(ngModel)]="theSelectedTimeslot" (click)="log()">
+  <mat-select #event [disabled]="!isHairTypeSelected" [(ngModel)]="theSelectedTimeslot">
     <mat-option *ngFor="let element of freeEvents" [value]="element">
         {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-  <button (click)="onCreateEvent()">Személyes adatok megadása</button>
+  <button mat-raised-button (click)="showPersonalDetailsForm()">Adatok megadása</button>
+  <div class="personal-data" *ngIf="isPersonalDetailsFormShown">
+      <mat-form-field class="name-form">
+          <input type="text" onfocus="this.value=''" matInput [(ngModel)]="selectedName" placeholder="Kérlek add meg a neved" value="Példa János">
+        </mat-form-field>
+    <mat-form-field class="email-form" >
+      <input type="email" onfocus="this.value=''" matInput [(ngModel)]="selectedEmail" placeholder="Kérlek add meg az e-mail címed" value="pelda@pelda.com">
+    </mat-form-field>
+    <mat-form-field class="tel-form">
+        <input type="tel" onfocus="this.value=''" matInput [(ngModel)]="selectedTelnum" placeholder="Kérlek add meg a telefonszámod" value="0630/123-45-67">
+    </mat-form-field>
+    <button mat-raised-button class="create-event-button" (click)="onCreateEvent()">Időpont foglalása</button>
+  </div>
 </div>
 

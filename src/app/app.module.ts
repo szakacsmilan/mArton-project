@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ContactComponent } from './components/contact/contact.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { ContactComponent } from './components/contact/contact.component';
     MatDialogModule,
     HttpClientModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   entryComponents: [AppointmentComponent],

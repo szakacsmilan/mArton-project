@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import { Event } from 'src/app/models/Event';
 import { HairType } from 'src/app/models/HairTypes';
 
-
 declare var eventStarts: string[];
 declare var eventEnds: string[];
 
@@ -38,6 +37,12 @@ export class AppointmentComponent implements OnInit {
 
   selectedDay: string;
 
+  isPersonalDetailsFormShown: boolean = false;
+
+  selectedName: string;
+  selectedEmail: string;
+  selectedTelnum: string;
+
 
 
 
@@ -65,12 +70,12 @@ export class AppointmentComponent implements OnInit {
     }
   }
 
-  log(){
-    console.log(this.theSelectedTimeslot);
+  showPersonalDetailsForm(){
+    this.isPersonalDetailsFormShown = true;
   }
 
   onCreateEvent(){
-    initCreateEvent(this.theSelectedTimeslot.startTime, this.theSelectedTimeslot.endTime, 'hajvagas', 'milan.szakacs@kalapacs.hu', 'vagd le a hajam', '30/514-77-23' );
+    initCreateEvent(this.theSelectedTimeslot.startTime, this.theSelectedTimeslot.endTime, this.selectedName, this.selectedEmail, this.theSelectedHairType.hairtype, this.selectedTelnum );
   }
 
   initHairTypes() {
