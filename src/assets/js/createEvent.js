@@ -30,6 +30,6 @@ function initCreateEvent(startTime,endTime, title, email, description, phoneNum)
               },
               function(err) { console.error("Execute error", err); });
   }
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "225408418605-82utlofp4jqh7imov90ossbkm6jga5lp.apps.googleusercontent.com"});
-  });
+  // gapi.load("client:auth2", function() {
+  //   gapi.auth2.init({client_id: "225408418605-82utlofp4jqh7imov90ossbkm6jga5lp.apps.googleusercontent.com"});
+  // });

@@ -6,7 +6,9 @@ import { HairType } from 'src/app/models/HairTypes';
 declare var eventStarts: string[];
 declare var eventEnds: string[];
 
+declare function loadGapi();
 declare function initCreateEvent(startTime,endTime, title, email, description, phoneNum): any;
+
 
 @Component({
   selector: 'app-appointment',
@@ -52,7 +54,7 @@ export class AppointmentComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.initEventsList();
+    loadGapi();
     this.initNextWeekDays();
     this.initHairTypes();
 
@@ -83,7 +85,7 @@ export class AppointmentComponent implements OnInit {
 
   initHairTypes() {
     this.hairTypesMan.push(
-      new HairType('Férfi vágás', 0, 30), new HairType('Férfi vágás + szakáll', 0, 30), new HairType('Férfi vágás + festés', 1, 0));
+      new HairType('Férfi hajvágás', 0, 30), new HairType('Férfi hajvágás + szakáll', 1, 0), new HairType('Férfi hajvágás + festés', 1, 30));
     this.hairTypesWoman.push(
       new HairType('Női frizuraszárítás', 0, 30), new HairType('Női hajvágás + szárítás', 1, 0), new HairType('Női hajtőfestés', 1, 0),
       new HairType('Női hajtőfestés + hajvágás', 1, 30), new HairType('Női teljes hajfestés', 1, 30),
@@ -95,9 +97,9 @@ export class AppointmentComponent implements OnInit {
   }
 
   onInitFreeEventsList() {
-    this.freeEvents.length = 0;
+    this.initEventsList();
+    console.log(this.selectedDay + this.theSelectedHairType.cuttingTimeHour + this.theSelectedHairType.cuttingTimeMinute);
     this.initFreeEventsList(this.selectedDay, this.theSelectedHairType.cuttingTimeHour, this.theSelectedHairType.cuttingTimeMinute);
-    console.log(this.freeEvents);
   }
 
   // Find the free slots and fill the eventList with it
