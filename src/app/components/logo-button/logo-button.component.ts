@@ -19,4 +19,9 @@ export class LogoButtonComponent implements OnInit {
   onCreateAppointment() {
     this.dialog.open(AppointmentComponent);
     }
+
+  closeDialog(){
+    this.dialog.closeAll();
+  }
+  
   }

@@ -1,16 +1,19 @@
 <div class="appointment-modal">
   <h4 mat-dialog-title>
     <div class="task-header">
-      <p>Időpont foglalás</p>
-      {{step2}}
+      <p>Időpont foglalás
+          <button class="dialog-close-button" mat-icon-button [mat-dialog-close]>
+              <mat-icon mat-list-icon>close</mat-icon>
+          </button>
+      </p>
     </div>
   </h4>
   <ul class="progressbar">
       <li class="active">Foglalási adatok</li>
-      <li [class.active]="step2 === true">Személyes adatok</li>
-      <li>Időpont lefoglalva</li>
+      <li [class.active]="stepTwoCompleted === true">Személyes adatok</li>
+      <li [class.active]="stepThreeCompleted === true">Időpont lefoglalva</li>
 </ul>
-  <div class="mat-content">
+  <div *ngIf="stepThreeCompleted === false" class="mat-content">
     <div class="hairtype-form-container">
       <div class="form-container">
         <h3 class="modal-text">Foglalási adatok</h3>
@@ -85,7 +88,8 @@
     <div class="button-wrapper">
     <button
     (click)="showPersonalDetailsForm()"
-  ><div class="downArrow bounce">
+    >
+    <div class="downArrow bounce">
       <img width="40" height="40" alt="" src="/assets/img/arrow.svg" />
     </div>
 </button>
@@ -141,4 +145,12 @@
       </div>
     </div>
   </div>
+  <div *ngIf="stepThreeCompleted === true" class="ready-icon-container">
+    <p>
+      <i class="material-icons ready-icon">
+            done
+      </i>
+    </p>
+    <p>Foglalás kész!</p>
+</div>
 </div>

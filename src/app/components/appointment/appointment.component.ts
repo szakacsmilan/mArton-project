@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Event } from 'src/app/models/Event';
 import { HairType } from 'src/app/models/HairTypes';
+
 
 declare var eventStarts: string[];
 declare var eventEnds: string[];
@@ -45,7 +46,8 @@ export class AppointmentComponent implements OnInit {
   selectedEmail: string;
   selectedTelnum: string;
 
-  step2 = false;
+  stepTwoCompleted = false;
+  stepThreeCompleted = false;
 
 
 
@@ -75,17 +77,20 @@ export class AppointmentComponent implements OnInit {
   }
 
   showPersonalDetailsForm(){
+    this.stepTwoCompleted = true;
     this.isPersonalDetailsFormShown = true;
-    this.step2 = true;
   }
 
   onCreateEvent(){
-    initCreateEvent(this.theSelectedTimeslot.startTime, this.theSelectedTimeslot.endTime, this.selectedName, this.selectedEmail, this.theSelectedHairType.hairtype, this.selectedTelnum );
+    initCreateEvent(this.theSelectedTimeslot.startTime,
+    this.theSelectedTimeslot.endTime, this.selectedName, this.selectedEmail, this.theSelectedHairType.hairtype, this.selectedTelnum );
+    this.stepThreeCompleted = true;
   }
 
   initHairTypes() {
     this.hairTypesMan.push(
-      new HairType('Férfi hajvágás', 0, 30), new HairType('Férfi hajvágás + szakáll', 1, 0), new HairType('Férfi hajvágás + festés', 1, 30));
+      new HairType('Férfi hajvágás', 0, 30),
+      new HairType('Férfi hajvágás + szakáll', 1, 0), new HairType('Férfi hajvágás + festés', 1, 30));
     this.hairTypesWoman.push(
       new HairType('Női frizuraszárítás', 0, 30), new HairType('Női hajvágás + szárítás', 1, 0), new HairType('Női hajtőfestés', 1, 0),
       new HairType('Női hajtőfestés + hajvágás', 1, 30), new HairType('Női teljes hajfestés', 1, 30),

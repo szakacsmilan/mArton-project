@@ -1,3 +1,8 @@
+.dialog-close-button {
+    color: #262626;
+    float: right;
+}
+
 .personal-data{
     margin-top: 20px;
 }

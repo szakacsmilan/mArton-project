@@ -13,6 +13,7 @@ function initCreateEvent(startTime,endTime, title, email, description, phoneNum)
   }
   function execute(startTime,endTime, title, email, description, phoneNum) {
     return gapi.client.calendar.events.insert({
+      sendUpdates: "all",
       "calendarId": "primary",
       "resource": {
         "end": {
