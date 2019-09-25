@@ -17,7 +17,6 @@ export class LogoButtonComponent implements OnInit {
   }
 
   onCreateAppointment() {
-    this.dialog.open(AppointmentComponent, {
-      width: '250px'});
+    this.dialog.open(AppointmentComponent);
     }
   }

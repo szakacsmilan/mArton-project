@@ -1,56 +1,144 @@
 <div class="appointment-modal">
-<h4>Időpont kiválasztása</h4>
-<mat-form-field>
-    <mat-label>Női vagy Férfi?</mat-label>
-    <mat-select #genderSelect [(ngModel)]="theSelectedGender" (selectionChange)="isGenderSelected=true">
-      <mat-option *ngFor="let gender of genders" [(value)]="gender">
-        {{gender}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-<mat-form-field>
-<mat-label>Szolgáltatás típusa</mat-label>
-<mat-select #cutType [disabled]="!isGenderSelected" [(ngModel)]="theSelectedHairType" (selectionChange)="isHairTypeSelected=true">
-  <ng-container *ngIf="genderSelect.value=='Férfi'">
-    <mat-option *ngFor="let hairtype of hairTypesMan" [(value)]="hairtype">
-      {{hairtype.hairtype}}
-    </mat-option>
-  </ng-container>
-  <ng-container *ngIf="genderSelect.value=='Nő'">
-    <mat-option #elseBlock *ngFor="let hairtype of hairTypesWoman" [(value)]="hairtype">
-        {{hairtype.hairtype}}
-      </mat-option>
-  </ng-container>
-</mat-select>
-</mat-form-field>
-<mat-form-field>
-    <mat-label>Melyik napon jönnél?</mat-label>
-    <mat-select #daySelected [(ngModel)]="selectedDay" [disabled]="!isHairTypeSelected" (closed)="onInitFreeEventsList()">
-      <mat-option *ngFor="let day of nextWeekDays" [value]="day">
-          {{day}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-<mat-form-field>
-  <mat-label>Válassz időpontot</mat-label>
-  <mat-select #event [disabled]="!isHairTypeSelected" [(ngModel)]="theSelectedTimeslot">
-    <mat-option *ngFor="let element of freeEvents" [value]="element">
-        {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-  <button mat-raised-button (click)="showPersonalDetailsForm()">Adatok megadása</button>
-  <div class="personal-data" *ngIf="isPersonalDetailsFormShown">
-      <mat-form-field class="name-form">
-          <input type="text" onfocus="this.value=''" matInput [(ngModel)]="selectedName" placeholder="Kérlek add meg a neved" value="Példa János">
-        </mat-form-field>
-    <mat-form-field class="email-form" >
-      <input type="email" onfocus="this.value=''" matInput [(ngModel)]="selectedEmail" placeholder="Kérlek add meg az e-mail címed" value="pelda@pelda.com">
-    </mat-form-field>
-    <mat-form-field class="tel-form">
-        <input type="tel" onfocus="this.value=''" matInput [(ngModel)]="selectedTelnum" placeholder="Kérlek add meg a telefonszámod" value="0630/123-45-67">
-    </mat-form-field>
-    <button mat-raised-button class="create-event-button" (click)="onCreateEvent()">Időpont foglalása</button>
+  <h4 mat-dialog-title>
+    <div class="task-header">
+      <p>Időpont foglalás</p>
+      {{step2}}
+    </div>
+  </h4>
+  <ul class="progressbar">
+      <li class="active">Foglalási adatok</li>
+      <li [class.active]="step2 === true">Személyes adatok</li>
+      <li>Időpont lefoglalva</li>
+</ul>
+  <div class="mat-content">
+    <div class="hairtype-form-container">
+      <div class="form-container">
+        <h3 class="modal-text">Foglalási adatok</h3>
+        <mat-grid-list cols="2">
+          <mat-form-field class="left-form">
+            <mat-label>Női vagy Férfi?</mat-label>
+            <mat-select
+              #genderSelect
+              [(ngModel)]="theSelectedGender"
+              (selectionChange)="isGenderSelected = true"
+            >
+              <mat-option *ngFor="let gender of genders" [(value)]="gender">
+                {{ gender }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Szolgáltatás típusa</mat-label>
+            <mat-select
+              #cutType
+              [disabled]="!isGenderSelected"
+              [(ngModel)]="theSelectedHairType"
+              (selectionChange)="isHairTypeSelected = true"
+            >
+              <ng-container *ngIf="genderSelect.value == 'Férfi'">
+                <mat-option
+                  *ngFor="let hairtype of hairTypesMan"
+                  [(value)]="hairtype"
+                >
+                  {{ hairtype.hairtype }}
+                </mat-option>
+              </ng-container>
+              <ng-container *ngIf="genderSelect.value == 'Nő'">
+                <mat-option
+                  #elseBlock
+                  *ngFor="let hairtype of hairTypesWoman"
+                  [(value)]="hairtype"
+                >
+                  {{ hairtype.hairtype }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="left-form">
+            <mat-label>Melyik napon jönnél?</mat-label>
+            <mat-select
+              #daySelected
+              [(ngModel)]="selectedDay"
+              [disabled]="!isHairTypeSelected"
+              (closed)="onInitFreeEventsList()"
+            >
+              <mat-option *ngFor="let day of nextWeekDays" [value]="day">
+                {{ day }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Válassz időpontot</mat-label>
+            <mat-select
+              #event
+              [disabled]="!isHairTypeSelected"
+              [(ngModel)]="theSelectedTimeslot"
+            >
+              <mat-option *ngFor="let element of freeEvents" [value]="element">
+                {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-list>
+      </div>
+    </div>
+    <div class="button-wrapper">
+    <button
+    (click)="showPersonalDetailsForm()"
+  ><div class="downArrow bounce">
+      <img width="40" height="40" alt="" src="/assets/img/arrow.svg" />
+    </div>
+</button>
+</div>
+    <div class="personal-data" *ngIf="isPersonalDetailsFormShown">
+      <div class="mat-content">
+        <div class="hairtype-form-container">
+          <div class="form-container">
+            <h3 class="modal-text">Személyes adatok</h3>
+            <mat-grid-list cols="2">
+              <mat-form-field class="name-form left-form">
+                <input
+                  type="text"
+                  onfocus="this.value=''"
+                  matInput
+                  [(ngModel)]="selectedName"
+                  placeholder="Add meg a neved"
+                  value="Példa János"
+                />
+              </mat-form-field>
+              <mat-form-field class="email-form">
+                <input
+                  type="email"
+                  onfocus="this.value=''"
+                  matInput
+                  [(ngModel)]="selectedEmail"
+                  placeholder="Add meg az e-mail címed"
+                  value="pelda@pelda.com"
+                />
+              </mat-form-field>
+              <mat-form-field class="tel-form left-form">
+                <input
+                  type="tel"
+                  onfocus="this.value=''"
+                  matInput
+                  [(ngModel)]="selectedTelnum"
+                  placeholder="Add meg a telefonszámod"
+                  value="0630/123-45-67"
+                />
+              </mat-form-field>
+            </mat-grid-list>
+          </div>
+        </div>
+        <div class="button-wrapper">
+        <button
+                mat-raised-button
+                class="data-button create-event-button"
+                (click)="onCreateEvent()"
+              >
+                Időpont foglalása
+              </button>
+            </div>
+      </div>
+    </div>
   </div>
 </div>
-

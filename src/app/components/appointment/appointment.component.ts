@@ -43,6 +43,8 @@ export class AppointmentComponent implements OnInit {
   selectedEmail: string;
   selectedTelnum: string;
 
+  step2 = false;
+
 
 
 
@@ -72,6 +74,7 @@ export class AppointmentComponent implements OnInit {
 
   showPersonalDetailsForm(){
     this.isPersonalDetailsFormShown = true;
+    this.step2 = true;
   }
 
   onCreateEvent(){

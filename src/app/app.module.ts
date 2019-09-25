@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatInputModule} from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -47,7 +48,8 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatSelectModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ],
   providers: [],
   entryComponents: [AppointmentComponent],
