@@ -24,7 +24,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 
   .ready-icon {
-    margin-top: 20%;
     font-size: 60px;
     color: green;
     border-width: 2px;
@@ -32,9 +31,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .ready-icon-container {
-    margin-top: 20%;
+    margin-bottom: 20%;
     font-size: 30px;
-    color: green;
+    color: #55b776;
     text-align: center;
+}
+
+.cdk-overlay-pane {
+    width: 45%;
+}
+
+#cdk-overlay-1 {
+    width: auto !important;
+}
+
+#cdk-overlay-2 {
+    width: auto !important;
+}
+
+#cdk-overlay-3 {
+    width: auto !important;
+}
+
+#cdk-overlay-4 {
+    width: auto !important;
+}
+
+.progressbar {
+    padding: 0;
 }
 

@@ -49,6 +49,8 @@ export class AppointmentComponent implements OnInit {
   stepTwoCompleted = false;
   stepThreeCompleted = false;
 
+  showForwardButton = false;
+
 
 
 

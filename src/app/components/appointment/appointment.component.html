@@ -1,20 +1,21 @@
 <div class="appointment-modal">
   <h4 mat-dialog-title>
     <div class="task-header">
-      <p>Időpont foglalás
-          <button class="dialog-close-button" mat-icon-button [mat-dialog-close]>
-              <mat-icon mat-list-icon>close</mat-icon>
-          </button>
+      <p>
+        Időpont foglalás
+        <button class="dialog-close-button" mat-icon-button [mat-dialog-close]>
+          <mat-icon mat-list-icon>close</mat-icon>
+        </button>
       </p>
     </div>
   </h4>
   <ul class="progressbar">
-      <li class="active">Foglalási adatok</li>
-      <li [class.active]="stepTwoCompleted === true">Személyes adatok</li>
-      <li [class.active]="stepThreeCompleted === true">Időpont lefoglalva</li>
-</ul>
+    <li class="active">Foglalási adatok</li>
+    <li [class.active]="stepTwoCompleted === true">Személyes adatok</li>
+    <li [class.active]="stepThreeCompleted === true">Időpont lefoglalva</li>
+  </ul>
   <div *ngIf="stepThreeCompleted === false" class="mat-content">
-    <div class="hairtype-form-container">
+    <div class="hairtype-form-container" *ngIf="!isPersonalDetailsFormShown">
       <div class="form-container">
         <h3 class="modal-text">Foglalási adatok</h3>
         <mat-grid-list cols="2">
@@ -77,6 +78,7 @@
               #event
               [disabled]="!isHairTypeSelected"
               [(ngModel)]="theSelectedTimeslot"
+              (closed)="showForwardButton = true"
             >
               <mat-option *ngFor="let element of freeEvents" [value]="element">
                 {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
@@ -86,15 +88,16 @@
         </mat-grid-list>
       </div>
     </div>
-    <div class="button-wrapper">
-    <button
-    (click)="showPersonalDetailsForm()"
-    >
-    <div class="downArrow bounce">
-      <img width="40" height="40" alt="" src="/assets/img/arrow.svg" />
-    </div>
-</button>
-</div>
+    <div class="button-wrapper" *ngIf="!isPersonalDetailsFormShown">
+        <button
+          mat-raised-button
+          class="data-button create-event-button"
+          (click)="showPersonalDetailsForm()"
+          [disabled]="!showForwardButton"
+        >
+          Személyes adatok megadása
+        </button>
+      </div>
     <div class="personal-data" *ngIf="isPersonalDetailsFormShown">
       <div class="mat-content">
         <div class="hairtype-form-container">
@@ -135,23 +138,23 @@
           </div>
         </div>
         <div class="button-wrapper">
-        <button
-                mat-raised-button
-                class="data-button create-event-button"
-                (click)="onCreateEvent()"
-              >
-                Időpont foglalása
-              </button>
-            </div>
+          <button
+            mat-raised-button
+            class="data-button create-event-button"
+            (click)="onCreateEvent()"
+          >
+            Időpont foglalása
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div *ngIf="stepThreeCompleted === true" class="ready-icon-container">
     <p>
       <i class="material-icons ready-icon">
-            done
+        done
       </i>
     </p>
     <p>Foglalás kész!</p>
-</div>
+  </div>
 </div>

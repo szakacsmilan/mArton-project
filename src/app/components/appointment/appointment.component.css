@@ -19,6 +19,10 @@
 
 }
 
+.task-header p {
+    margin-left: 2%;
+}
+
 .data-button{
     background-color: #262626;
     font-size: 14px;
@@ -68,7 +72,7 @@
     text-align: center;
     margin: 0 auto 10px auto;
     border-radius: 50%;
-    background-color: white;
+    background-color: 55b776;
 }
 .progressbar li:after {
     width: 100%;
@@ -84,10 +88,10 @@
     content: none;
 }
 .progressbar li.active {
-    color: #3C55AD;
+    color: #55b776;
 }
 .progressbar li.active:before {
-    border-color: #3C55AD;
+    border-color: #55b776;
 }
 .progressbar li.active + li:after {
     background-color: #55b776;
