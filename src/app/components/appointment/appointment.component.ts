@@ -105,7 +105,6 @@ export class AppointmentComponent implements OnInit {
 
   onInitFreeEventsList() {
     this.initEventsList();
-    console.log(this.selectedDay + this.theSelectedHairType.cuttingTimeHour + this.theSelectedHairType.cuttingTimeMinute);
     this.initFreeEventsList(this.selectedDay, this.theSelectedHairType.cuttingTimeHour, this.theSelectedHairType.cuttingTimeMinute);
   }
 
