@@ -21,6 +21,7 @@
           <mat-form-field class="left-form">
             <mat-label>Női vagy Férfi?</mat-label>
             <mat-select
+              required
               #genderSelect
               [(ngModel)]="theSelectedGender"
               (selectionChange)="isGenderSelected = true"
