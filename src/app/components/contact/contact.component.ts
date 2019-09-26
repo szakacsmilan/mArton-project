@@ -16,8 +16,9 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    let martonPos = {lat: 47.4891555, lng: 19.0554174}
     let mapProp = {
-      center: new google.maps.LatLng(47.4891555, 19.0554174),
+      center: new google.maps.LatLng(martonPos),
       zoom: 15,
       styles: [
         {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -101,5 +102,10 @@ export class ContactComponent implements OnInit {
       ]
     }
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    let marker = new google.maps.Marker({
+      position: martonPos,
+      map: this.map,
+      title: 'Marton hairdresser!'
+    });
   }
     };
