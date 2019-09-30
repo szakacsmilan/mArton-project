@@ -53,7 +53,7 @@ export class AppointmentComponent implements OnInit {
     this.initHairTypes();
   }
 
-  initNextWeekDays(){
+  initNextWeekDays() {
     const today = moment()
     for (let i = 1; i < 8; i++){
       this.nextWeekDays.push(moment().add(i, 'days').format('YYYY-MM-DD').toString());
@@ -82,7 +82,6 @@ export class AppointmentComponent implements OnInit {
       new HairType('Női balayage', 2, 0), new HairType('Női melír teljes hajon', 1, 30),
       new HairType('Női melír teljes hajon + hajvágás', 2, 0)
     );
-
   }
 
   onInitFreeEventsList() {

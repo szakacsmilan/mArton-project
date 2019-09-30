@@ -10,16 +10,16 @@ declare var eventEnds: string[];
 })
 export class FreeEventsService {
 
-  events: Event[] = [];
+  eventsExist: Event[] = [];
   freeEvents: Event[] = [];
 
   constructor() { }
 
   // Filling events list with the events already exists in the calendar
   initEventsList() {
-    this.events.length = 0;
+    this.eventsExist.length = 0;
     for (let i = 0; i < eventStarts.length; i++) {
-      this.events.push(new Event(moment(eventStarts[i]['dateTime']),
+      this.eventsExist.push(new Event(moment(eventStarts[i]['dateTime']),
       moment(eventEnds[i]['dateTime'])));
     }
   }
@@ -29,43 +29,45 @@ export class FreeEventsService {
   // @param2: The length of the slot in Hour
   initFreeEventsList(expectedDate: string, slotLengthHour: number, slotLengthMinute: number) {
     this.freeEvents.length = 0;
+
     const openingTime = 8;
     const closingTime = 20;
-    let startMinute = 0;
-    let endMinute = slotLengthMinute;
+
+    let tempStartMin = 0;
+    let tempEndMin = slotLengthMinute;
     let tempHour = 0;
 
     for (let i = openingTime; i < closingTime;) {
-      let isBefore = true;
+      let isNotExistEvent = true;
       let tempEvent = new Event(
-        moment(expectedDate).hour(i).minute(startMinute).format(),
-        moment(expectedDate).hour(i + slotLengthHour + tempHour).minute(endMinute).format());
+        moment(expectedDate).hour(i).minute(tempStartMin).format(),
+        moment(expectedDate).hour(i + slotLengthHour + tempHour).minute(tempEndMin).format());
 
-      this.events.forEach(element => {
+      this.eventsExist.forEach(element => {
         if (moment(element.startTime).date() === moment(tempEvent.startTime).date()) {
           if (moment(element.startTime).isSame(moment(tempEvent.startTime))
-          || (moment(tempEvent.endTime).isBefore(moment(element.endTime)))
-          && moment(tempEvent.endTime).isAfter(moment(element.startTime)) ||
-          moment(element.endTime).isSame(moment(tempEvent.endTime))
+              || (moment(tempEvent.endTime).isBefore(moment(element.endTime)))
+              && moment(tempEvent.endTime).isAfter(moment(element.startTime)) ||
+              moment(element.endTime).isSame(moment(tempEvent.endTime))
           ) {
-            isBefore = false;
+            isNotExistEvent = false;
             i = moment(element.endTime).hour();
-            startMinute = moment(element.endTime).minute();
-            if (startMinute === 0) {
+            tempStartMin = moment(element.endTime).minute();
+            if (tempStartMin === 0) {
               tempHour = 0;
-              endMinute = slotLengthMinute;
+              tempEndMin = slotLengthMinute;
             } else {
               tempHour = 1;
-              endMinute = 0;
+              tempEndMin = 0;
             }
           }
         }
       });
-      if (isBefore) {
-        startMinute = endMinute;
-        endMinute += slotLengthMinute;
-        if (endMinute == 60) {
-          endMinute = 0;
+      if (isNotExistEvent) {
+        tempStartMin = tempEndMin;
+        tempEndMin += slotLengthMinute;
+        if (tempEndMin == 60) {
+          tempEndMin = 0;
           tempHour = 1;
         } else {
           if (slotLengthMinute !== 0){
