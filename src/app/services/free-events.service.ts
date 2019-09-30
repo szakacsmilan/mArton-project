@@ -43,11 +43,21 @@ export class FreeEventsService {
 
       this.events.forEach(element => {
         if (moment(element.startTime).date() === moment(tempEvent.startTime).date()) {
-          if (moment(element.startTime).isSame(moment(tempEvent.startTime)) 
-          || (moment(tempEvent.endTime).isBefore(moment(element.endTime))) && moment(tempEvent.endTime).isAfter(moment(element.startTime))){
+          if (moment(element.startTime).isSame(moment(tempEvent.startTime))
+          || (moment(tempEvent.endTime).isBefore(moment(element.endTime)))
+          && moment(tempEvent.endTime).isAfter(moment(element.startTime)) ||
+          moment(element.endTime).isSame(moment(tempEvent.endTime))
+          ) {
             isBefore = false;
             i = moment(element.endTime).hour();
             startMinute = moment(element.endTime).minute();
+            if (startMinute === 0) {
+              tempHour = 0;
+              endMinute = slotLengthMinute;
+            } else {
+              tempHour = 1;
+              endMinute = 0;
+            }
           }
         }
       });
@@ -68,6 +78,7 @@ export class FreeEventsService {
         this.freeEvents.push(tempEvent);
         i += slotLengthHour;
       }
+
     }
   }
 }
