@@ -22,6 +22,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { FreeEventsService } from './services/free-events.service';
 
 
 
@@ -51,7 +52,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [
+    FreeEventsService
+  ],
   entryComponents: [AppointmentComponent],
   bootstrap: [AppComponent],
 

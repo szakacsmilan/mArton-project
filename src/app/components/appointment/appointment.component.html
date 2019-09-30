@@ -80,7 +80,7 @@
               [(ngModel)]="theSelectedTimeslot"
               (closed)="showForwardButton = true"
             >
-              <mat-option *ngFor="let element of freeEvents" [value]="element">
+              <mat-option *ngFor="let element of eventService.freeEvents" [value]="element">
                 {{ element.startTimeToShow }} - {{ element.endTimeToShow }}
               </mat-option>
             </mat-select>

@@ -17,6 +17,8 @@ function start() {
       'params':{'timeMin': (new Date().toISOString().split('.')[0] + 'Z')}
       })
     }).then(function(response) {
+      eventStarts.length = 0;
+      eventEnds.length = 0;
       for (let i = 0; i < response.result.items.length; i++){
     eventStarts.push(response.result.items[i].start)
     eventEnds.push(response.result.items[i].end)}
